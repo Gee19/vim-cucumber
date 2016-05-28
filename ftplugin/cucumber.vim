@@ -33,6 +33,7 @@ if !exists("b:cucumber_steps_glob")
   else
     let b:cucumber_steps_glob = expand($CUKEFILES)
   endif
+endif
 
 if !exists("g:no_plugin_maps") && !exists("g:no_cucumber_maps")
   cnoremap <SID>foldopen <Bar>if &foldopen =~# 'tag'<Bar>exe 'norm! zv'<Bar>endif
