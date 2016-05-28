@@ -18,10 +18,21 @@ setlocal omnifunc=CucumberComplete
 
 let b:undo_ftplugin = "setl fo< com< cms< ofu<"
 
-let b:cucumber_root = expand('%:p:h:s?.*[\/]\%(features\|stories\)\zs[\/].*??')
+" Thhis is the original version
+" let b:cucumber_root = expand('%:p:h:s?.*[\/]\%(features\|stories\)\zs[\/].*??')
+" See if we can get more specific about the folders/files included
+let b:cucumber_root1 = expand('%:p:h:s?.*[\/]\%(features\/step_definitions\/mobile_website\)\zs[\/].*??')
+echom "root1 : ".b:cucumber_root1
+let b:cucumber_root2 = expand('%:p:h:s?.*[\/]\%(features\/step_definitions\/common\/services\)\zs[\/].*??')
+echom "root2 : ".b:cucumber_root2
+
 if !exists("b:cucumber_steps_glob")
-  let b:cucumber_steps_glob = b:cucumber_root.'/**/*.rb'
-endif
+  if !exists($CUKEFILES)
+    let b:cucumber_steps_glob = b:cucumber_root1.'/**/*.rb'
+    let b:cucumber_steps_glob += b:cucumber_root2.'/**/*.rb'
+  else
+    let b:cucumber_steps_glob = expand($CUKEFILES)
+  endif
 
 if !exists("g:no_plugin_maps") && !exists("g:no_cucumber_maps")
   cnoremap <SID>foldopen <Bar>if &foldopen =~# 'tag'<Bar>exe 'norm! zv'<Bar>endif
