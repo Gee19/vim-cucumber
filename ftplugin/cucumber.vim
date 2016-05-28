@@ -2,6 +2,8 @@
 " Language:	Cucumber
 " Maintainer:	Tim Pope <vimNOSPAM@tpope.org>
 " Last Change:	2013 Jun 01
+" Updated: Jon Seidel <jseidel@edpci.com>
+" Last Change: 2015 May 28
 
 " Only do this when not done yet for this buffer
 if (exists("b:did_ftplugin"))
@@ -18,20 +20,19 @@ setlocal omnifunc=CucumberComplete
 
 let b:undo_ftplugin = "setl fo< com< cms< ofu<"
 
-" Thhis is the original version
-" let b:cucumber_root = expand('%:p:h:s?.*[\/]\%(features\|stories\)\zs[\/].*??')
-" See if we can get more specific about the folders/files included
-let b:cucumber_root1 = expand('%:p:h:s?.*[\/]\%(features\/step_definitions\/mobile_website\)\zs[\/].*??')
-echom "root1 : ".b:cucumber_root1
-let b:cucumber_root2 = expand('%:p:h:s?.*[\/]\%(features\/step_definitions\/common\/services\)\zs[\/].*??')
-echom "root2 : ".b:cucumber_root2
+" Modified to allow setting the cucumber-root to a different value,
+" via ENV variable CUKEFILES
+" No provision is made for allowing dynamic changes to CUKEFILES
+
+" This is the default
+let b:cucumber_root = expand('%:p:h:s?.*[\/]\%(features\|stories\)\zs[\/].*??')
 
 if !exists("b:cucumber_steps_glob")
-  if !exists($CUKEFILES)
-    let b:cucumber_steps_glob = b:cucumber_root1.'/**/*.rb'
-    let b:cucumber_steps_glob += b:cucumber_root2.'/**/*.rb'
+  if empty($CUKEFILES)
+    let b:cucumber_steps_glob = b:cucumber_root.'/**/*.rb'
   else
-    let b:cucumber_steps_glob = expand($CUKEFILES)
+    echom 'Using CUKEFILES environment variable for b:cucumber_steps_glob'
+    let b:cucumber_steps_glob = $CUKEFILES
   endif
 endif
 
