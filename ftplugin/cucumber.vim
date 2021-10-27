@@ -64,6 +64,8 @@ endfunction
 
 function! s:allsteps()
   let step_pattern = '\C^\s*\K\k*\>\s*(\=\s*\zs\S.\{-\}\ze\s*)\=\s*\%(do\|{\)\s*\%(|[^|]*|\s*\)\=\%($\|#\)'
+  " The \%(|[^|]*|\s*\)\= part of the regexp is designed to match the Ruby equivalent of |arg1, arg2|. Will need to do similar for JavaScript:
+  " let step_pattern = '\C^\s*\K\k*\>\s*(\=\s*\zs\S.\{-\}\ze\s*\%()\=\s*\%(do\|{\)\s*\%(|[^|]*|\s*\)\=\%($\|#\)\|YOUR JS VERSION HERE\%($\|//\)\)'
   let steps = []
   for file in split(glob(b:cucumber_steps_glob),"\n")
     let lines = readfile(file)
