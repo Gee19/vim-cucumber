@@ -1,8 +1,7 @@
 " Vim filetype plugin
 " Language:	Cucumber
 " Maintainer:	Tim Pope <vimNOSPAM@tpope.org>
-" Last Change:	2013 Jun 01
-" Last Change: 2016 May 28
+" Last Change:	Oct 27, 2021
 
 " Only do this when not done yet for this buffer
 if (exists("b:did_ftplugin"))
@@ -27,7 +26,7 @@ let b:cucumber_root = expand('%:p:h:s?.*[\/]\%(features\|stories\)\zs[\/].*??')
 if !exists("b:cucumber_steps_glob")
   if empty($CUKEFILES)
     echom "Using default definition for b:cucumber_steps_glob"
-    let b:cucumber_steps_glob = b:cucumber_root.'/**/*.rb'
+    let b:cucumber_steps_glob = b:cucumber_root.'/**/*.feature'
   else
     echom 'Using CUKEFILES environment variable for b:cucumber_steps_glob'
     let b:cucumber_steps_glob = $CUKEFILES
