@@ -42,4 +42,5 @@ then run `:PlugInstall`
 
 ## TODO
 
+- Implement regex changes mentioned in tpope/vim-cucumber/pull/37#issuecomment-783803734
 - Add project specific configuration
