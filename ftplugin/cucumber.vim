@@ -26,7 +26,7 @@ let b:cucumber_root = expand('%:p:h:s?.*[\/]\%(features\|stories\)\zs[\/].*??')
 if !exists("b:cucumber_steps_glob")
   if empty($CUKEFILES)
     echom "Using default definition for b:cucumber_steps_glob"
-    let b:cucumber_steps_glob = b:cucumber_root.'/**/*.feature'
+    let b:cucumber_steps_glob = b:cucumber_root.'/**/*.cucumber.ts'
   else
     echom 'Using CUKEFILES environment variable for b:cucumber_steps_glob'
     let b:cucumber_steps_glob = $CUKEFILES

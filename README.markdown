@@ -26,18 +26,20 @@ To avoid this situation, you can export the CUKEFILES environment variable as a
 glob specification, which will then be used in place of the default.  An example
 would be:
 
-  export CUKEFILES='/Users/jesii/features/step\_definitions/mobweb/\*\*/\*.rb'
+  `export CUKEFILES="/path/to/step/definitions/\*\*/\*.cucumber.ts"`
 
 ## Documentation
 
 Standard vim documentation is available through:
-  :h vim-cucumber
+  `:h vim-cucumber`
 
 ## Installation
 
-If you don't have a preferred installation method, I recommend installing
-[pathogen.vim](https://github.com/tpope/vim-pathogen), and then simply copy
-and paste:
+Add the following to your vimrc:
+`Plug 'Gee19/vim-cucumber'`
 
-    cd ~/.vim/bundle
-    git clone git://github.com/tpope/vim-cucumber.git
+then run `:PlugInstall`
+
+## TODO
+
+- Add project specific configuration
